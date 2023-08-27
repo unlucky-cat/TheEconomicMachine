@@ -16,6 +16,9 @@ Services
 Stocks
 Financial Assets
 Spending
+Earning
+Income
+Borrowing
 Quantity
 Price
 Building block
@@ -23,5 +26,7 @@ Cycles
 Forces
 Market
 
+----------
+chart y:growth (gdp) / x (time)
 ----------
 Spawn

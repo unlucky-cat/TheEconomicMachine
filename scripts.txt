@@ -1,0 +1,10 @@
+----------------- pip dependencies initialization ---------------------
+
+py -m pip install pytest
+py -m pip install pytest-mock
+py -m pip install pandas
+py -m pip install matplotlib
+
+----------------- venv activation ---------------------
+.venv\Scripts\Activate.bat
+.venv\Scripts\Activate.ps1
