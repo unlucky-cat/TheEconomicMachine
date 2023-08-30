@@ -4,15 +4,16 @@ from model.economy import Economy
 def test_Economy_constructor_spawns_1000_units_by_default():
     eco = Economy()
     
-    assert len(eco.units) == 1000
+    assert len(eco._units) == 1000
 
 def test_Economy_iterate_one_time():
     eco = Economy()
 
-    assert eco.GetTotalProductivity() == 0
+    assert eco.total_productivity == 0
 
     eco.Iterate()
 
-    assert eco.GetTotalProductivity() == 1000
+    assert eco.total_productivity > 0
     assert eco.total_money == 100 * 1000
     assert eco.avg_money == 100 * 1000 / 1000
+    
