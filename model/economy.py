@@ -12,6 +12,26 @@ class Economy:
         for unit in self.units:
             unit.Iterate()
 
+    @property
+    def total_money(self):
+        summ = 0
+
+        for unit in self.units:
+            summ += unit.money
+
+        return summ       
+    
+    @property
+    def avg_money(self):
+        summ = 0
+        count = 0
+
+        for unit in self.units:
+            summ += unit.money
+            count += 1
+
+        return summ / count
+
     def GetTotalProductivity(self):
         summ = 0
 

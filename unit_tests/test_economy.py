@@ -14,3 +14,5 @@ def test_Economy_iterate_one_time():
     eco.Iterate()
 
     assert eco.GetTotalProductivity() == 1000
+    assert eco.total_money == 100 * 1000
+    assert eco.avg_money == 100 * 1000 / 1000
