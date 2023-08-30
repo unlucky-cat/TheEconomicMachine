@@ -8,3 +8,11 @@ py -m pip install matplotlib
 ----------------- venv activation ---------------------
 .venv\Scripts\Activate.bat
 .venv\Scripts\Activate.ps1
+
+----------------- git ---------------------
+git checkout dev
+git checkout -b feature-name
+git add .
+git commit -m "Add feature XYZ"
+git push origin feature-name
+<Create a Pull Request>
