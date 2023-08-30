@@ -29,7 +29,7 @@ class Economy:
     def total_money(self):
         summ = 0
 
-        for unit in self.units:
+        for unit in self._units:
             summ += unit.money
 
         return summ       
@@ -39,7 +39,7 @@ class Economy:
         summ = 0
         count = 0
 
-        for unit in self.units:
+        for unit in self._units:
             summ += unit.money
             count += 1
 
