@@ -3,7 +3,7 @@ class Unit:
 
     def __init__(self):
         self.productivity = 0
-        self.money = 0
+        self.money = 100
         self.optimism = 0
     
     def Iterate(self):
