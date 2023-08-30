@@ -6,6 +6,7 @@ def test_Unit_constructor():
     unit1 = Unit(economy1)
 
     assert unit1.productivity == 0
-    assert unit1.money == 0
+    assert unit1.money == 100
     assert unit1._economy == economy1
+
 

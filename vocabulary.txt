@@ -30,3 +30,18 @@ Market
 chart y:growth (gdp) / x (time)
 ----------
 Spawn
+
+----------
+Economy = sum(Transactions)
+Transaction(Buyer(Money or Credit), Seller(Goods, Services, Financial Assets))
+Total Spending = Money Spent = Credit Spent
+Price = Total Spending / Total Quantity Sold
+Marker = All Buyers + All Sellers + Transactions of the same kind
+Actors = (People, Businesses, Banks, Governments)
+
+Requirements
+--------------------
+every Item sould initialy have
+    100 money
+    0 productivity
+    and some productivity factor between [0 and 1) which will be used to increase productivity each iteration
