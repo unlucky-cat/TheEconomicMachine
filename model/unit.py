@@ -10,9 +10,11 @@ class Unit:
 
         self.money = 100
         self.optimism = 0
+        self.goods_produced = 0
   
     def Iterate(self):
         self._productivity_history.append(self.productivity + self._productivity_factor)
+        self.goods_produced += self.productivity
 
     @property
     def productivity(self):

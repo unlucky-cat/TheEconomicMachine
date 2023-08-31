@@ -10,10 +10,14 @@ def test_Economy_iterate_one_time():
     eco = Economy()
 
     assert eco.total_productivity == 0
+    assert eco.total_money == 100 * 1000
+    assert eco.avg_money == 100 * 1000 / 1000
+    assert eco.total_goods_produced == 0
 
     eco.Iterate()
 
     assert eco.total_productivity > 0
     assert eco.total_money == 100 * 1000
     assert eco.avg_money == 100 * 1000 / 1000
+    assert eco.total_goods_produced > 0
     

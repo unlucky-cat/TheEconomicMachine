@@ -2,11 +2,12 @@ from model.economy import Economy
 from model.unit import Unit
 
 def test_Unit_constructor():
-    economy1 = Economy()
-    unit1 = Unit(economy1)
+    economy = Economy()
+    unit = Unit(economy)
 
-    assert unit1.productivity == 0
-    assert unit1.money == 100
-    assert unit1._economy == economy1
+    assert unit.productivity == 0
+    assert unit.money == 100
+    assert unit._economy == economy
+    assert unit.goods_produced == 0
 
 
