@@ -8,7 +8,7 @@ from model.economy import Economy
 economy = Economy(100)
 economy.Iterate(20)
 
-y_axis = economy._total_productivity_history
+y_axis = [stat.total_productivity for stat in economy._statistics]
 x_axis = np.arange(0, len(y_axis), step=1)
 
 df = pd.DataFrame(y_axis)
