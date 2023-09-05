@@ -41,7 +41,8 @@ Actors = (People, Businesses, Banks, Governments)
 
 Requirements
 --------------------
-every Item sould initialy have
+every Item should initialy have
     100 money
     0 productivity
-    and some productivity factor between [0 and 1) which will be used to increase productivity each iteration
+    0 goods and/or services produced
+    and some productivity factor between [0 and 1) which will be used to increase productivity on each iteration

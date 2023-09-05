@@ -10,9 +10,28 @@ py -m pip install matplotlib
 .venv\Scripts\Activate.ps1
 
 ----------------- git ---------------------
+
+----------- adding new feature branch
 git checkout dev
 git checkout -b feature-name
 git add .
 git commit -m "Add feature XYZ"
 git push origin feature-name
 <Create a Pull Request>
+
+----------- update local feature branch with the lates changes from dev
+git fetch origin
+git chechout dev
+git pull origin dev
+git checkout feature-name
+git merge dev
+<Resolve conflicts>
+<Run tests>
+git commit -am "Merged dev changes into feature-name"
+git push origin feature-name
+
+----------- overwrite local feature branch with the latest state of dev
+git fetch origin
+git checkout feature-name
+git reset --hard origin/dev
+git push origin feature-name --force
