@@ -11,7 +11,7 @@ economy.Iterate(20)
 x_axis = np.arange(0, 20, step=1)
 
 for i in range(20):
-    y_axis = economy._units[i]._productivity_history
+    y_axis = economy._units[i]._history_data["productivity"]
     df = pd.DataFrame(y_axis)
     plt.plot(df, label='line1', linestyle='-', marker='o')
 
