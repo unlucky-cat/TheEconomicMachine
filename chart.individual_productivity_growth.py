@@ -4,13 +4,15 @@ import numpy as np
 import matplotlib.pyplot as plt
 from model.economy import Economy
 
+iterations_count = 20
+items_count = 4
 
-economy = Economy(20)
-economy.Iterate(20)
+economy = Economy(items_count)
+economy.Iterate(iterations_count)
 
-x_axis = np.arange(0, 20, step=1)
+x_axis = np.arange(0, iterations_count, step=1)
 
-for i in range(20):
+for i in range(items_count):
     y_axis = economy._units[i]._history_data["productivity"]
     df = pd.DataFrame(y_axis)
     plt.plot(df, label='line1', linestyle='-', marker='o')
