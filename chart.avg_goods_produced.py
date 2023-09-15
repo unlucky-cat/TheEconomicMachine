@@ -21,7 +21,7 @@ plt.plot(df, label='average', linestyle='-', marker='o', color="red")
 
 # --------------
 for i in range(items_count):
-    y_axis = economy._units[i]._goods_produced_history
+    y_axis = economy._units[i]._history_data["goods_produced"]
     df = pd.DataFrame(y_axis)
     plt.plot(df, label='unit', linestyle='-', marker='o', color="green")
 # --------------
