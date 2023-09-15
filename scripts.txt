@@ -22,11 +22,14 @@ git push origin feature-name
 ----------- update local feature branch with the lates changes from dev
 git fetch origin
 git chechout dev
+(git stash)
 git pull origin dev
 git checkout feature-name
 git merge dev
 <Resolve conflicts>
 <Run tests>
+(git stash pop)
+<Resolve conflicts>
 git commit -am "Merged dev changes into feature-name"
 git push origin feature-name
 
