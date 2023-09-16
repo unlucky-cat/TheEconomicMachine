@@ -1,37 +1,47 @@
 import random
+from model.item import Item
+from model.bee import BasicEconomicEntity
 
+class Unit(BasicEconomicEntity):
 
-class Unit:
+    def __init__(self, economy, on_death_callback = None, productivity_factor = -1, consumption_factor = -1):
+        """productivity_factor is a value by which productivity grows
+        productivity is a value by which production grows
+        production is a speed at which value is produced per iteration"""
+        
+        super().__init__()
+        self.productivity_factor = random.random() if productivity_factor == -1 else productivity_factor
+        self.consumption_factor = random.random() if consumption_factor == -1 else consumption_factor
+        self.economy = economy
+        self.on_death_callback = on_death_callback
 
-    def __init__(self, economy):
-        self._productivity_factor = random.random()
-        self._needs_growing_factor = random.random()
-        self._economy = economy
-        # self._needs_satisfaction_history = [0]
-        self._history_data = {
-            "productivity": [0],
-            "goods_produced": [0],
-            "needs_growing": [0],
-        }
-
+        self.productivity = 0
+        self.reminders = 0
         self.money = 100
+        self.food = random.randrange(1, 100)
         self.optimism = 0
-        self.goods_produced = 0
+        self.items = [Item()]
+        self.is_dead = False
   
-    def Iterate(self):
-        productivity = self.productivity + self._productivity_factor
-        self._history_data["productivity"].append(productivity)
-        self.goods_produced += productivity
-        self._history_data["goods_produced"].append(self.goods_produced)
+    def iterate(self):
+        if self.is_dead: return
+        
+        sum_of_items_production = sum([item.production for item in self.items])
+        sum_of_items_consumption = sum([item.consumption for item in self.items])
 
-        current_needs = self.current_needs + self._needs_growing_factor
-        self._history_data["needs_growing"].append(current_needs)
+        self.productivity += self.productivity_factor
+        self.production += (self.productivity + sum_of_items_production)
+        self.consumption += (self.consumption_factor + sum_of_items_consumption)
+        self.reminders += (self.production - self.consumption)
 
+        self.food -= 1
 
-    @property
-    def productivity(self):
-        return self._history_data["productivity"][-1]
+        if self.food <= 0:
+            self.food = 0
+            self._die()
 
-    @property
-    def current_needs(self):
-        return self._history_data["needs_growing"][-1]
+    def _die(self):
+        self.is_dead = True
+
+        if self.on_death_callback is not None:
+            self.on_death_callback(self)
