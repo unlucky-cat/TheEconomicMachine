@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from model.economy import Economy
 
-iterations_count = 100
+iterations_count = 20
 items_count = 10
 
 economy = Economy(items_count)
@@ -17,13 +17,14 @@ y_axis = [stat.total_units_count for stat in economy.statistics]
 df = pd.DataFrame(y_axis)
 plt.plot(df, label='tuc', linestyle='-', marker='o', color="red")
 
-y_axis = [stat.total_food for stat in economy.statistics]
+y_axis = [stat.total_leftovers for stat in economy.statistics]
 df = pd.DataFrame(y_axis)
-plt.plot(df, label='food', linestyle='-', marker='+', color="green")
+plt.plot(df, label='leftovers', linestyle='-', marker='+', color="green")
 # --------------
 
 
 plt.xticks(x_axis)
+plt.yscale('log')
 
 
 tbl = pd.DataFrame.from_records([s.to_dict() for s in economy.statistics])

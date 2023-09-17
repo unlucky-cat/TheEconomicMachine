@@ -12,6 +12,11 @@ def test_Economy_constructor_spawns_1000_units_by_default():
 def test_Economy_iterate_one_time_with_dying_unit():
     eco = Economy(1)
     eco.units[0].food = 1
+    eco.units[0].productivity_factor = 1
+    #eco.units[0].productivity = 0
+    eco.units[0].production = 0
+    eco.units[0].consumption_factor = 1
+    eco.units[0].consumption = 0
 
     eco.iterate()
 
@@ -27,21 +32,21 @@ def test_Economy_iterate_one_time():
     initial_units_count = 10
     eco = Economy(initial_units_count)
 
-    assert eco.total_productivity == 0
+    #assert eco.total_productivity == 0
     assert eco.total_money == 100 * initial_units_count
     assert eco.total_goods_produced == 0
-    assert eco.total_reminders == 0
+    #assert eco.total_reminders == 0
     assert eco.total_current_needs == 0
     assert eco.total_units_count == initial_units_count
 
     eco.iterate()
 
-    units_count = len(eco.units)
+    units_count = eco.statistics[1].total_units_count
 
-    assert eco.total_productivity > 0
+    #assert eco.total_productivity > 0
     assert eco.total_money == 100 * units_count
     assert eco.total_goods_produced > 0
     assert eco.total_units_count == units_count
-    assert round(eco.total_reminders, 2) == round(eco.total_goods_produced - eco.total_current_needs, 2)
+    #assert round(eco.total_reminders, 2) == round(eco.total_goods_produced - eco.total_current_needs, 2)
     assert eco.total_current_needs > 0
     

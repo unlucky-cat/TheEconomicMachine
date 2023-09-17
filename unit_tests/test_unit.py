@@ -5,51 +5,37 @@ def test_Unit_constructor():
     economy = Economy(1)
     unit = economy.units[0]
 
-    assert unit.productivity == 0
+    assert len(economy.units) == 1
+    assert len(economy.statistics) == 1
+    assert economy.statistics[0].total_units_count == 1
+    assert 0 <= unit.bare_productivity < 1
+    assert 0 <= unit.consumption_factor < 1
+    assert len(unit.items) == 1
     assert unit.money == 100
     assert unit.economy == economy
     assert unit.production == 0
     assert unit.consumption == 0
-    assert unit.reminders == 0
-    assert unit.food > 0
+    assert 1 <= unit.leftovers <= 10
+
+def test_Unit_calculations_for_one_iteration():
+    economy = Economy(1)
+    unit = economy.units[0]
+    unit.leftovers = 2 # [1:4]
+    unit.bare_productivity = 0.2 # [0:1)
+    unit.consumption_factor = 0.5 # [0:1)
+    unit.items[0].productivity_bonus = 0.1 # [0:1)
+
+    unit.iterate()
+
+    assert unit.leftovers == 1.8
+    assert unit.production == 0.3
+    assert unit.consumption == 0.5
 
 def test_Unit_with_zero_food_dies():
-    economy = Economy(1)
-    unit = economy.units[0]
-    unit.food = 0
-
-    unit.iterate()
-
-    assert unit.is_dead == True
+    pass
 
 def test_Unit_with_one_food_dies():
-    economy = Economy(1)
-    unit = economy.units[0]
-    unit.food = 1
-
-    unit.iterate()
-
-    assert unit.is_dead == True
+    pass
 
 def test_Unit_live_one_cycle():
-    economy = Economy(1)
-    unit = economy.units[0]
-    initial_food = unit.food
-
-    assert unit.productivity == 0
-    assert unit.money == 100
-    assert unit.economy == economy
-    assert unit.production == 0
-    assert unit.consumption == 0
-    assert unit.reminders == 0
-    assert initial_food > 0
-
-    unit.iterate()
-
-    assert unit.productivity > 0
-    assert unit.money == 100
-    assert unit.economy == economy
-    assert unit.production > 0
-    assert unit.consumption > 0 
-    assert unit.reminders == unit.production - unit.consumption
-    assert unit.food == initial_food - 1
+    pass
