@@ -21,3 +21,6 @@ plt.xticks(x_axis)
 #    plt.annotate(str(j), xy=(i,j))
 
 plt.show()
+
+tbl = pd.DataFrame.from_records([s.to_dict() for s in economy._statistics])
+print(tbl)
