@@ -1,12 +1,13 @@
 import random
 from model.item import Item
-from model.economy import Economy
+# this import leads to circular dependency in tests
+#from model.economy import Economy
 from model.market import Market
 from model.bee import BasicEconomicEntity
 
 class Unit(BasicEconomicEntity):
 
-    def __init__(self, economy: Economy, on_death_callback = None, bare_productivity = -1, consumption_factor = -1):
+    def __init__(self, economy, on_death_callback = None, bare_productivity = -1, consumption_factor = -1):
         """productivity is a value by which production grows
         base_productivity is a bare human productivity (no tools used),
         so productivity = bare_productivity + sum(tools.productivity)
@@ -43,14 +44,18 @@ class Unit(BasicEconomicEntity):
         # i'm still alive, have money and have negative diff - need to buy food or tools
         if self.leftovers > 0 and diff < 0 and self.money > 0:
             avg_price = self.economy.food_market.average_price
-            avg_price -= avg_price * 0.1
+            if avg_price == None: #you are the first
+                avg_price = self.economy.food_market.random_price
+            avg_price -= avg_price * (random.randrange(1, 10) / 100.0)
             self.economy.food_market.submit(Market.Request(self, 'buy', 4, avg_price))
 
 
         # i have extra leftovers and positive diff - can sell
         if self.leftovers > 10 and diff > 0:
             avg_price = self.economy.food_market.average_price
-            avg_price += avg_price * 0.1
+            if avg_price == None: #you are the first
+                avg_price = self.economy.food_market.random_price
+            avg_price += avg_price * (random.randrange(1, 10) / 100.0)
             self.economy.food_market.submit(Market.Request(self, 'sell', 5, avg_price))
 
 

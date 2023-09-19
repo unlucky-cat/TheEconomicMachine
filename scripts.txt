@@ -38,3 +38,15 @@ git fetch origin
 git checkout feature-name
 git reset --hard origin/dev
 git push origin feature-name --force
+
+----------- stop current wotk and get new remote branch
+ git checkout <current_branch>
+ git stash save "Work in progress"
+ git fetch
+ git checkout -b <new_branch> origin/<new_branch>
+ <Make changes>
+ git add .
+ git commit -m "changes on <new_branch>"
+ git push origin <new_branch>
+ git checkout <current_branch>
+ git stash pop

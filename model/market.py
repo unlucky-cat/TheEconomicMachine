@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 class Market:
@@ -18,4 +19,11 @@ class Market:
 
     @property
     def average_price(self):
-        return sum([r.price for r in self.requests]) / len(self.requests)
+        if len(self.requests) == 0:
+            return None
+        else:
+            return sum([r.price for r in self.requests]) / len(self.requests)
+        
+    @property
+    def random_price(self):
+        return random.randrange(5, 20) / 10.0

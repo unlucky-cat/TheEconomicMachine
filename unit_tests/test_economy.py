@@ -11,11 +11,10 @@ def test_Economy_constructor_spawns_1000_units_by_default():
 
 def test_Economy_iterate_one_time_with_dying_unit():
     eco = Economy(1)
-    eco.units[0].food = 1
-    eco.units[0].productivity_factor = 1
-    #eco.units[0].productivity = 0
+    eco.units[0].leftovers = 1
+    eco.units[0].bare_productivity = 1
     eco.units[0].production = 0
-    eco.units[0].consumption_factor = 1
+    eco.units[0].consumption_factor = 2
     eco.units[0].consumption = 0
 
     eco.iterate()

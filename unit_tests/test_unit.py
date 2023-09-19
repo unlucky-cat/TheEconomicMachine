@@ -1,13 +1,11 @@
-from model.economy import Economy
+from collections import namedtuple
 from model.unit import Unit
 
 def test_Unit_constructor():
-    economy = Economy(1)
-    unit = economy.units[0]
+    Economy = namedtuple('Economy', [])
+    economy = Economy()
+    unit = Unit(economy)
 
-    assert len(economy.units) == 1
-    assert len(economy.statistics) == 1
-    assert economy.statistics[0].total_units_count == 1
     assert 0 <= unit.bare_productivity < 1
     assert 0 <= unit.consumption_factor < 1
     assert len(unit.items) == 1
@@ -18,8 +16,12 @@ def test_Unit_constructor():
     assert 1 <= unit.leftovers <= 10
 
 def test_Unit_calculations_for_one_iteration():
-    economy = Economy(1)
-    unit = economy.units[0]
+    Market = namedtuple('Market', ['average_price', 'submit'])
+    market = Market(0.3, lambda request: True)
+    Economy = namedtuple('Economy', ['food_market'])
+    economy = Economy(market)
+
+    unit = Unit(economy)
     unit.leftovers = 2 # [1:4]
     unit.bare_productivity = 0.2 # [0:1)
     unit.consumption_factor = 0.5 # [0:1)
